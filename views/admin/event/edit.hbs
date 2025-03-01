@@ -1,0 +1,94 @@
+{{>header}}        
+
+        <title> {{title}}</title>
+
+{{>navbar}}
+{{>hero}}
+
+<div class="container-fluid my-3">
+        <div class="row">
+                <div class="col-md-3">
+                        {{>sidebar}}
+                </div>
+                <div class="col-md-9">
+                        <h5 class="bg-primary text-center text-light p-2">Update Event<a href="/admin/event" class="text-light float-end">Back</a></h5>
+                        <form action="/admin/event/update/{{data._id}}" method="post" enctype="multipart/form-data">
+                           <div class="mb-3">
+                                        <label>Name*</label>
+                                        <input type="text" name="name" placeholder="Full Name" value="{{data.name}}" class="form-control border-3 border-primary">
+                                        {{#if errorMessage.name}} <p class="text-danger">{{errorMessage.name}}</p> {{/if}}
+                                </div>
+                                <div class="row">
+                                   <div class="col-md-3 col-sm-6 mb-3">
+                                        <label>Date*</label>
+                                        <input type="date" name="date" value="{{data.date}}"class="form-control border-3 border-primary">
+                                        {{#if errorMessage.date}} <p class="text-danger">{{errorMessage.date}}</p> {{/if}}
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                        <label>Time*</label>
+                                        <input type="text" name="time" placeholder="Event's Timing like 10:00AM to 12:00PM" value="{{data.time}}"class="form-control border-3 border-primary">
+                                        {{#if errorMessage.time}} <p class="text-danger">{{errorMessage.time}}</p> {{/if}}
+                                </div>
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                        <label>Location*</label>
+                                        <input type="text" name="location" placeholder="Event's Location" value="{{data.location}}"class="form-control border-3 border-primary">
+                                        {{#if errorMessage.location}} <p class="text-danger">{{errorMessage.location}}</p> {{/if}}
+                                </div>
+
+                                <div class="col-md-3 col-sm-6 mb-3">
+                                        <label>Cover</label>
+                                        <input type="file" name="cover" class="form-control border-3 border-primary">
+                                        {{#if errorMessage.cover}} <p class="text-danger">{{errorMessage.cover}}</p> {{/if}}
+                                </div>
+                           </div>
+
+                           <div class="mb-3">
+                                <label>Short Description*</label>
+                                <textarea name="shortDescription" placeholder="Short Description..." rows="4" class="form-control border-3 border-primary">{{data.shortDescription}}</textarea>
+                                {{#if errorMessage.shortDescription}} <p class="text-danger">{{errorMessage.shortDescription}}</p> {{/if}}
+                           </div>
+
+                           <div class="mb-3">
+                                <label>Long Description*</label>
+                                <textarea name="longDescription" placeholder="Long Description..." id="div_editor1" rows="4" style="border: 3px solid #ff4880;" class="form-control border-3 border-primary">{{data.longDescription}}</textarea>
+                                {{#if errorMessage.longDescription}} <p class="text-danger">{{errorMessage.longDescription}}</p> {{/if}}
+                           </div>
+
+                           <div class="mb-3">
+                                <label>Meta Title</label>
+                                <textarea name="metaTitle" placeholder="Meta Title..." rows="4" class="form-control border-3 border-primary">{{data.metaTitle}}</textarea>
+                           </div>
+
+                           <div class="mb-3">
+                                <label>Meta Description</label>
+                                <textarea name="metaDescription" placeholder="Meta Description..." rows="4" class="form-control border-3 border-primary">{{data.metaDescription}}</textarea>
+                           </div>
+
+                           <div class="mb-3">
+                                <label>Meta Keywords</label>
+                                <textarea name="metaKeywords" placeholder="Meta Keywords..." rows="4" class="form-control border-3 border-primary">{{data.metaKeywords}}</textarea>
+                           </div>
+                           
+                           <div class="row">
+                                <div class="col-md-6 col-sm-6 mb-3">
+                                        <label>Active</label>
+                                        <select name="active" class="form-select border-3 border-primary">
+                                                <option value="1" {{dropdownHelper data.active true}}>Yes</option>
+                                                <option value="0" {{dropdownHelper data.active false}}>No</option>
+                                        </select>
+                                </div>
+                                <div class="col-md-6 col-sm-6 mb-3">
+                                        <label>Sort Order</label>
+                                        <input type="number" name="sortOrder" value="{{data.sortOrder}}" placeholder="Sort Order" class="form-control border-3 border-primary">
+                                </div>
+                           </div>
+
+                           <div class="mb-3">
+                                <button type="submit" class="btn btn-primary w-100">Update</button>
+                           </div>
+                        </form>
+                </div>
+        </div>
+</div>
+
+{{>footer}}
